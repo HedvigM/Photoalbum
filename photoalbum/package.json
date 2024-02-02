@@ -1,0 +1,36 @@
+{
+  "name": "photoalbum",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3001",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/cache": "^11.11.0",
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material-nextjs": "^5.15.6",
+    "@sanity/client": "^6.12.3",
+    "@sanity/image-url": "^1.0.2",
+    "@sanity/overlays": "^2.3.9",
+    "@sanity/react-loader": "^1.8.1",
+    "@sanity/vision": "^3.26.1",
+    "next": "14.1.0",
+    "next-sanity": "^7.0.17",
+    "react": "^18",
+    "react-dom": "^18",
+    "sanity": "^3.26.1",
+    "styled-components": "^6.1.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.1.0",
+    "typescript": "^5"
+  }
+}
