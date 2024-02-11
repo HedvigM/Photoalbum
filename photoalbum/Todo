@@ -1,0 +1,3 @@
+- [id] pages: Se how i can both fetch image data and use params in the same component.
+- Change name to "images" instead of "post" in sanity admin.
+- Look over the components to see if anything should be written into smaller components.
