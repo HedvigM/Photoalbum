@@ -7,10 +7,16 @@ interface Props {
 
 export const MainContainer: React.FC<PropsWithChildren<Props>> = ({
   children,
-  topMargin = 8,
+  topMargin = 3,
 }) => {
   return (
-    <Container maxWidth="md" sx={{ pt: topMargin }}>
+    <Container
+      maxWidth="md"
+      sx={{
+        pt: topMargin,
+        minHeight: "100vh",
+      }}
+    >
       {children}
     </Container>
   );
