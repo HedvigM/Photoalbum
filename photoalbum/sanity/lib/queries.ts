@@ -7,23 +7,27 @@ const clientConfig = {
     useCdn: process.env.NODE_ENV === 'production',
   };
 
-export const POSTS_QUERY = groq`*[_type == "post"]{
-    title,
-    "slug": slug.current,
-    "image": image.asset->url,
-    "alt": image.alt,
-    content,
-}`;
-
 export function getPosts() {
     return createClient(clientConfig).fetch(groq`
-      *[_type == "post"]{
-        title,
-        content,
-        "image": image.asset->url,
-        "slug": slug.current
-      }
-      `);
+    *[_type == "post"]{
+      title,
+      content,
+      "image": image.asset->url,
+      "slug": slug.current,
+      _id
+    }
+    `,  {cache: "no-store"} )
   }
 
-export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug][0]`;
+
+export function getPost(id: string) {
+  return createClient(clientConfig).fetch(groq`
+    *[_type == "post" && _id == $id][0]{
+      title,
+      content,
+      "image": image.asset->url,
+      "slug": slug.current,
+      _id
+    }
+    `, {id});
+}
