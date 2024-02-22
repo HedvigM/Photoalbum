@@ -14,7 +14,8 @@ export function getPosts() {
       content,
       "image": image.asset->url,
       "slug": slug.current,
-      _id
+      _id,
+      date
     }
     `,  {cache: "no-store"} )
   }
@@ -27,7 +28,8 @@ export function getPost(id: string) {
       content,
       "image": image.asset->url,
       "slug": slug.current,
-      _id
+      _id,
+      date
     }
     `, {id});
 }

@@ -11,6 +11,7 @@ export async function ImagesContainer() {
     alt: string;
     slug: string;
     _id: string;
+    date: string;
   };
 
   return (
@@ -22,8 +23,9 @@ export async function ImagesContainer() {
         overflow: "hidden",
       }}
     >
-      {posts.map((post: Post) => (
-        <>
+      {posts
+        .sort((a: any, b: any) => a.date - b.date)
+        .map((post: Post) => (
           <Link href={`/${post._id}`}>
             <img
               alt={post.alt}
@@ -37,8 +39,7 @@ export async function ImagesContainer() {
               }}
             />
           </Link>
-        </>
-      ))}
+        ))}
     </div>
   );
 }
