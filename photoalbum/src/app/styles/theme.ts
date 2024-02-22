@@ -3,8 +3,17 @@ import { createTheme } from '@mui/material/styles';
 
 export const theme = createTheme({
   palette: {
-    mode: 'light'
+    mode: 'light',
+    primary: {
+      main: '#cdd661', // Light green
+      contrastText: 'black'
+    },
+    secondary: {
+      main: '#61C6C6', // Light blue
+      contrastText: 'black',
+    },
   },
+
   typography: {
     fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
     fontSize: 16,
