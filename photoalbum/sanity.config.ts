@@ -19,7 +19,7 @@ export default defineConfig({
     types: [{
       type: "document",
       name: "post",
-      title: "Post",
+      title: "Posts",
       fields: [
         {
           name: "title",
@@ -33,6 +33,11 @@ export default defineConfig({
           options: {
             source: "title",
           },
+        },
+        {
+          name: "date",
+          title: "Date",
+          type: "date",
         },
         {
           name: "image",
@@ -53,7 +58,36 @@ export default defineConfig({
           type: "text",
         },
       ],
-  }]
+  },
+{
+  type: "document",
+  name: "comment",
+  title: "Comments",
+  fields: [
+    {
+      name: "name",
+      title: "Name",
+      type: "string",
+    },
+    {
+      name: "email",
+      title: "Email",
+      type: "string",
+    },
+    {
+      name: "text",
+      title: "Text",
+      type: "text",
+      readOnly: true,
+    },
+    {
+      name: "post",
+      title: "Post",
+      type: "reference",
+      to: [{type: "post"}],
+    },
+  ],
+}]
   },
   plugins: [
     structureTool(),
