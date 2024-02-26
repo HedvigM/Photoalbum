@@ -5,11 +5,12 @@ import { Inter } from "next/font/google";
 import { theme } from "./styles/theme";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 import "./globals.css";
+import "dotenv/config";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Jorids Foto album",
+  title: "Jorids Fotoalbum",
   description: "A photo album of Jorids life",
 };
 

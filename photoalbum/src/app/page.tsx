@@ -38,7 +38,7 @@ export default async function Home() {
               textAlign="center"
               sx={{ m: 0 }}
             >
-              Jorids Foto album
+              Jorids Fotoalbum
             </Typography>
             <Typography color="black" variant="body1" textAlign="center">
               This is a private photo album, please login to view the images.
@@ -75,7 +75,7 @@ export default async function Home() {
   return (
     <MainContainer>
       <Typography color="black" variant="h1" textAlign="center">
-        Jorids Foto album
+        Jorids Fotoalbum
       </Typography>
       <ImagesContainer />
     </MainContainer>
