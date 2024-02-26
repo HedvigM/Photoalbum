@@ -65,6 +65,11 @@ export default defineConfig({
   title: "Comments",
   fields: [
     {
+      name: "text",
+      title: "Text",
+      type: "text",
+    },
+    {
       name: "name",
       title: "Name",
       type: "string",
@@ -75,14 +80,8 @@ export default defineConfig({
       type: "string",
     },
     {
-      name: "text",
-      title: "Text",
-      type: "text",
-      readOnly: true,
-    },
-    {
-      name: "post",
-      title: "Post",
+      name: "ref",
+      title: "Reference",
       type: "reference",
       to: [{type: "post"}],
     },
