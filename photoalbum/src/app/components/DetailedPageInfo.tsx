@@ -1,6 +1,6 @@
-"use client";
-import { Link, Typography } from "@mui/material";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import { Typography } from "@mui/material";
+import { BackArrow } from "./BackArrow";
+import { LikedButton } from "./LikedButton";
 
 type DetailedPageProps = {
   post: {
@@ -15,11 +15,8 @@ export default function DetailedPageInfo(props: DetailedPageProps) {
   return (
     <>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 4fr 1fr" }}>
-        <Link href={"/"}>
-          {" "}
-          {/* Den här pilen borde inte vara i den här komponenten. */}
-          <ArrowBackIosIcon />
-        </Link>
+        {" "}
+        <BackArrow />
         <Typography color="black" variant="h1" textAlign="center">
           {props.post.title}
         </Typography>
@@ -36,6 +33,7 @@ export default function DetailedPageInfo(props: DetailedPageProps) {
           borderRadius: "5px",
         }}
       />
+      <LikedButton />
       <Typography
         color="black"
         variant="body1"

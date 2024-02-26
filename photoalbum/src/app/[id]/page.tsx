@@ -1,13 +1,16 @@
-"use client";
 import { MainContainer } from "../components/MainContainer";
 import DetailedPageInfo from "../components/DetailedPageInfo";
 import Form from "../components/Form";
-import { useParams } from "next/navigation";
 import { getPost } from "../../../sanity/lib/queries";
+import Comments from "../components/Comments";
 
-export default async function DetailerView() {
-  const params = useParams<{ id: string }>();
+export default async function DetailedView({
+  params,
+}: {
+  params: { id: string };
+}) {
   const post = await getPost(params.id);
+
   return (
     <MainContainer>
       <div
@@ -18,7 +21,8 @@ export default async function DetailerView() {
         }}
       >
         <DetailedPageInfo post={post} />
-        <Form />
+        <Form id={params.id} />
+        <Comments id={params.id} />
       </div>
     </MainContainer>
   );
