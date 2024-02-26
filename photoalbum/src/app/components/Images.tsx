@@ -23,23 +23,21 @@ export async function ImagesContainer() {
         overflow: "hidden",
       }}
     >
-      {posts
-        .sort((a: any, b: any) => a.date - b.date)
-        .map((post: Post) => (
-          <Link href={`/${post._id}`}>
-            <img
-              alt={post.alt}
-              src={post.image}
-              style={{
-                height: "100%",
-                width: "100%",
-                objectFit: "cover",
-                aspectRatio: "1/1",
-                borderRadius: "5px",
-              }}
-            />
-          </Link>
-        ))}
+      {posts.map((post: Post) => (
+        <Link href={`/${post._id}`}>
+          <img
+            alt={post.alt}
+            src={post.image}
+            style={{
+              height: "100%",
+              width: "100%",
+              objectFit: "cover",
+              aspectRatio: "1/1",
+              borderRadius: "5px",
+            }}
+          />
+        </Link>
+      ))}
     </div>
   );
 }

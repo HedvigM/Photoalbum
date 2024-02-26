@@ -9,7 +9,7 @@ const clientConfig = {
 
 export function getPosts() {
     return createClient(clientConfig).fetch(groq`
-    *[_type == "post"]{
+    *[_type == "post"] | order(date desc) {
       title,
       content,
       "image": image.asset->url,
@@ -32,4 +32,16 @@ export function getPost(id: string) {
       date
     }
     `, {id});
+}
+
+export function getComments(id: string) {
+  return createClient(clientConfig).fetch(groq`
+  *[_type=="post" && _id == $id][0]{
+    "relatedComments": *[_type=='comment' && references(^._id)] | order(_createdAt desc){ 
+      text,
+      name,
+    }
+  }
+  `,{id});
+
 }
