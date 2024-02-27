@@ -1,59 +1,56 @@
-"use server"
+"use server";
 
- import { revalidateTag } from "next/cache";
+import { revalidateTag } from "next/cache";
 
- export interface StatusMessage {
+export interface StatusMessage {
   severity: Severity;
   message: string;
 }
 
-export type Severity = 'error' | 'warning' | 'info' | 'success';
+export type Severity = "error" | "warning" | "info" | "success";
 
+export async function addComment(
+  previousState: StatusMessage | null | undefined,
+  formData: FormData | undefined | null
+): Promise<StatusMessage> {
+  if (!formData) {
+    return { severity: "error", message: "Ingen formdata!" };
+  }
 
-  export async function addComment(previousState: StatusMessage | null | undefined, formData: FormData | undefined | null) {
-    if(!formData) {
-      return { severity: "error", message: "Ingen formdata!" }
+  let comment = formData.get("comment");
+  let id = formData.get("id");
+  let name = formData.get("name");
+  let email = formData.get("email");
 
-    }
-
-    let comment = formData.get("comment");
-    let id = formData.get("id");
-    let name = formData.get("name");
-    let email = formData.get("email");
-  
-    try {
-      await fetch(
-        "https://k5kvfr8o.api.sanity.io/v1/data/mutate/production",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_SANITY_API_WRITE_TOKEN}`,
-          },
-          body: JSON.stringify({
-            mutations: [
-              {
-                create: {
-                  _type: "comment",
-                  name: name,
-                  email: email,
-                  text: comment,
-                  ref: {
-                    _type: "reference",
-                    _ref: id,
-                  },
-                },
+  try {
+    await fetch("https://k5kvfr8o.api.sanity.io/v1/data/mutate/production", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_SANITY_API_WRITE_TOKEN}`,
+      },
+      body: JSON.stringify({
+        mutations: [
+          {
+            create: {
+              _type: "comment",
+              name: name,
+              email: email,
+              text: comment,
+              ref: {
+                _type: "reference",
+                _ref: id,
               },
-            ],
-          },)
-        }
-      );
+            },
+          },
+        ],
+      }),
+    });
 
-      revalidateTag(id as string);
-      return { severity: "success", message: "Kommentar tillagd!" };
-    } catch (error) {
-      console.error("error", error);
-      return { severity: "error", message: "Något gick fel!" };
-    }
-    
-  };
+    revalidateTag(id as string);
+    return { severity: "success", message: "Kommentar tillagd!" };
+  } catch (error) {
+    console.error("error", error);
+    return { severity: "error", message: "Något gick fel!" };
+  }
+}

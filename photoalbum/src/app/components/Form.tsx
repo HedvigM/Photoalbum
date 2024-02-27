@@ -3,7 +3,7 @@ import { Button, TextField } from "@mui/material";
 import { useEffect, useRef } from "react";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { useFormState } from "react-dom";
-import { addComment, addNames } from "../actions";
+import { addComment } from "../actions";
 
 export default function Form(props: { id: string }) {
   const user = useUser();
