@@ -1,32 +1,26 @@
 "use client";
 import { Button, TextField } from "@mui/material";
-import { FormEvent, useEffect, useRef } from "react";
-import { addComment } from "../../../sanity/lib/mutations";
+import { useEffect, useRef } from "react";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { useFormState } from "react-dom";
+import { addComment, addNames } from "../actions";
 
 export default function Form(props: { id: string }) {
-  const [statusMesage, formAction] = useFormState(onSubmit, null);
   const user = useUser();
+
+  const [statusMessage, formAction] = useFormState(addComment, null);
   const formElement = useRef<HTMLFormElement>(null);
 
-  async function onSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-
-    const formData = new FormData(event.currentTarget);
-    addComment(formData);
-  }
-
   useEffect(() => {
-    if (statusMesage?.severity !== "error" && formElement.current) {
-      console.log("statusMesage", statusMesage);
+    if (statusMessage?.severity !== "error" && formElement.current) {
+      console.log("statusMesage", statusMessage);
       formElement.current.reset();
     }
-  }, [statusMesage]);
+  }, [statusMessage]);
 
   return (
     <form
-      onSubmit={onSubmit}
+      action={formAction}
       ref={formElement}
       style={{
         display: "flex",
@@ -44,7 +38,13 @@ export default function Form(props: { id: string }) {
         multiline
         maxRows={4}
       />
-      <Button type="submit" variant="contained" size="small" disabled={!user}>
+      <Button
+        type="submit"
+        variant="contained"
+        size="small"
+        disabled={!user}
+        /* aria-disabled={pending} */
+      >
         Skicka
       </Button>
     </form>
