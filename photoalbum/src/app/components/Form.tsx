@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { useFormState } from "react-dom";
 import { addComment } from "../actions";
+import { Submit } from "./Submit";
 
 export default function Form(props: { id: string }) {
   const user = useUser();
@@ -38,15 +39,7 @@ export default function Form(props: { id: string }) {
         multiline
         maxRows={4}
       />
-      <Button
-        type="submit"
-        variant="contained"
-        size="small"
-        disabled={!user}
-        /* aria-disabled={pending} */
-      >
-        Skicka
-      </Button>
+      <Submit disabled={!user}>Skicka</Submit>
     </form>
   );
 }
