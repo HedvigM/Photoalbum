@@ -20,7 +20,7 @@ export default async function DetailedView({
           gap: "10px",
         }}
       >
-        <DetailedPageInfo post={post} />
+        <DetailedPageInfo post={post} postId={params.id} />
         <Form id={params.id} />
         <Comments id={params.id} />
       </div>

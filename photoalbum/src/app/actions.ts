@@ -54,3 +54,38 @@ export async function addComment(
     return { severity: "error", message: "Något gick fel!" };
   }
 }
+
+export async function addLike(
+  postId: string
+  /*   likes: number */
+): Promise<StatusMessage> {
+  console.log("in addLike", postId);
+  try {
+    await fetch("https://k5kvfr8o.api.sanity.io/v1/data/mutate/production", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_SANITY_API_WRITE_TOKEN}`,
+      },
+      body: JSON.stringify({
+        mutations: [
+          {
+            patch: {
+              id: postId,
+              inc: {
+                likes: 1,
+              },
+            },
+          },
+        ],
+      }),
+    });
+
+    revalidateTag(postId);
+    console.log("like added");
+    return { severity: "success", message: "Like tillagd!" };
+  } catch (error) {
+    console.error("error", error);
+    return { severity: "error", message: "Något gick fel!" };
+  }
+}

@@ -1,17 +1,22 @@
 import { Typography } from "@mui/material";
 import { BackArrow } from "./BackArrow";
 import { LikedButton } from "./LikedButton";
+import { getLikes } from "../../../sanity/lib/queries";
 
 type DetailedPageProps = {
+  postId: string;
   post: {
     title: string;
     image: string;
     content: string;
     alt: string;
+    _id: string;
   };
 };
 
-export default function DetailedPageInfo(props: DetailedPageProps) {
+export default async function DetailedPageInfo(props: DetailedPageProps) {
+  const likes = await getLikes(props.postId);
+  console.log("likes in detailed page", likes);
   return (
     <>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 4fr 1fr" }}>
@@ -33,7 +38,7 @@ export default function DetailedPageInfo(props: DetailedPageProps) {
           borderRadius: "5px",
         }}
       />
-      <LikedButton />
+      <LikedButton likes={likes[0].likes} postId={props.postId} />
       <Typography
         color="black"
         variant="body1"
@@ -42,6 +47,12 @@ export default function DetailedPageInfo(props: DetailedPageProps) {
       >
         {props.post.content}
       </Typography>
+      <Typography
+        color="black"
+        variant="body1"
+        textAlign="center"
+        sx={{ maxWidth: "500px", placeSelf: "center" }}
+      ></Typography>
     </>
   );
 }
