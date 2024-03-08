@@ -11,21 +11,25 @@ type LikeButtonProps = {
 };
 
 export const LikedButton = (props: LikeButtonProps) => {
-  /* const [optimisticLikes, addOptimisticLikes] = useOptimistic(); */
-  const [likes, setLikes] = useState(props.likes);
+  const [optimisticLikes, setOptimisticLikes] = useOptimistic(props.likes);
 
-  console.log("likes", likes);
-  const onAddLike = (id: string) => {
-    addLike("b0b0cee5-0f25-4a3f-8f08-b9d8a500731e");
-    setLikes(likes + 1);
+  const optimisticLikeUpdate = () => {
+    addLike(props.postId);
+    setOptimisticLikes(optimisticLikes + 1);
   };
 
   return (
     <div>
-      {props.likes}
-      <Button onClick={() => addLike(props.postId)}>
-        <FavoriteIcon aria-hidden={true} />
-      </Button>
+      {optimisticLikes}
+      <form action={optimisticLikeUpdate}>
+        <Button type="submit" name="likeButton">
+          {optimisticLikes > 1 ? (
+            <FavoriteIcon aria-hidden={true} />
+          ) : (
+            <FavoriteBorderIcon aria-hidden={true} />
+          )}
+        </Button>
+      </form>
     </div>
   );
 };

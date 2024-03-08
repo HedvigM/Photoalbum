@@ -55,11 +55,7 @@ export async function addComment(
   }
 }
 
-export async function addLike(
-  postId: string
-  /*   likes: number */
-): Promise<StatusMessage> {
-  console.log("in addLike", postId);
+export async function addLike(postId: string): Promise<StatusMessage> {
   try {
     await fetch("https://k5kvfr8o.api.sanity.io/v1/data/mutate/production", {
       method: "POST",
@@ -82,7 +78,6 @@ export async function addLike(
     });
 
     revalidateTag(postId);
-    console.log("like added");
     return { severity: "success", message: "Like tillagd!" };
   } catch (error) {
     console.error("error", error);

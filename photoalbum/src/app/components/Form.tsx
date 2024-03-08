@@ -14,7 +14,6 @@ export default function Form(props: { id: string }) {
 
   useEffect(() => {
     if (statusMessage?.severity !== "error" && formElement.current) {
-      console.log("statusMesage", statusMessage);
       formElement.current.reset();
     }
   }, [statusMessage]);
