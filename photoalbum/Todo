@@ -1,5 +1,5 @@
-- Make it possible to send a comment, find how to do that in the schema.
-
 - [id] pages: Se how i can both fetch image data and use params in the same component.
 
 - Look over the components to see if anything should be written into smaller components.
+
+- likes should start att 0, not empty in schema.

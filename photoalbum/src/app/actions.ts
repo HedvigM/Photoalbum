@@ -56,6 +56,7 @@ export async function addComment(
 }
 
 export async function addLike(postId: string): Promise<StatusMessage> {
+  console.log("postId", postId);
   try {
     await fetch("https://k5kvfr8o.api.sanity.io/v1/data/mutate/production", {
       method: "POST",

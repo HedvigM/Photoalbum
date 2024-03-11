@@ -2,6 +2,13 @@ import { Typography } from "@mui/material";
 import { getComments } from "../../../sanity/lib/queries";
 import { unstable_cache } from "next/cache";
 
+export type Comments = {
+  relatedComments: Comment[];
+};
+export type Comment = {
+  name: string;
+  text: string;
+};
 export default async function Comments(props: { id: string }) {
   const getCommentsThroughCache = unstable_cache(
     async (): Promise<Comments> => {
@@ -13,14 +20,6 @@ export default async function Comments(props: { id: string }) {
   );
 
   const comments = await getCommentsThroughCache();
-
-  type Comment = {
-    name: string;
-    text: string;
-  };
-  type Comments = {
-    relatedComments: Comment[];
-  };
 
   return (
     <div

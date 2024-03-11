@@ -23,7 +23,7 @@ export const LikedButton = (props: LikeButtonProps) => {
       {optimisticLikes}
       <form action={optimisticLikeUpdate}>
         <Button type="submit" name="likeButton">
-          {optimisticLikes > 1 ? (
+          {optimisticLikes >= 1 ? (
             <FavoriteIcon aria-hidden={true} />
           ) : (
             <FavoriteBorderIcon aria-hidden={true} />
