@@ -68,6 +68,9 @@ export default defineConfig({
             readOnly: true,
           },
         ],
+        initialValue: {
+          likes: 0,
+        },
       },
       {
         type: "document",
