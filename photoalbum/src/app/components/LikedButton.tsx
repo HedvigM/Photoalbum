@@ -3,7 +3,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useOptimistic, useState } from "react";
 import { addLike } from "../actions";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 
 type LikeButtonProps = {
   likes: number;
@@ -19,17 +19,27 @@ export const LikedButton = (props: LikeButtonProps) => {
   };
 
   return (
-    <div>
-      {optimisticLikes}
+    <>
       <form action={optimisticLikeUpdate}>
-        <Button type="submit" name="likeButton">
+        <Button
+          type="submit"
+          size="small"
+          name="likeButton"
+          variant="text"
+          sx={{ padding: "0px", width: "15px" }}
+        >
           {optimisticLikes >= 1 ? (
-            <FavoriteIcon aria-hidden={true} />
+            <>
+              <Typography color="black" variant="body1" aria-hidden={true}>
+                {optimisticLikes}
+              </Typography>
+              <FavoriteIcon aria-hidden={true} />
+            </>
           ) : (
             <FavoriteBorderIcon aria-hidden={true} />
           )}
         </Button>
       </form>
-    </div>
+    </>
   );
 };

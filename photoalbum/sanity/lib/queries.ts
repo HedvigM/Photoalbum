@@ -18,8 +18,7 @@ export function getPosts() {
       _id,
       date
     }
-    `,
-    { cache: "no-store" }
+    `
   );
 }
 

@@ -26,6 +26,9 @@ export default function Form(props: { id: string }) {
         display: "flex",
         flexDirection: "column",
         gap: "10px",
+        maxWidth: "500px",
+        placeSelf: "center",
+        width: "100%",
       }}
     >
       <input type="hidden" name="id" value={props.id} />

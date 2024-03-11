@@ -2,6 +2,7 @@ import { Typography } from "@mui/material";
 import { BackArrow } from "./BackArrow";
 import { LikedButton } from "./LikedButton";
 import { getLikes } from "../../../sanity/lib/queries";
+import { unstable_cache } from "next/cache";
 
 type DetailedPageProps = {
   postId: string;
@@ -15,14 +16,27 @@ type DetailedPageProps = {
 };
 
 export default async function DetailedPageInfo(props: DetailedPageProps) {
-  const likes = await getLikes(props.postId);
-  console.log("likes in detailed page", likes);
+  const getLikesThroughCache = unstable_cache(
+    async () => {
+      const likes = await getLikes(props.postId);
+      return likes;
+    },
+    [props.postId],
+    { tags: [props.postId] }
+  );
+
+  const likes = await getLikesThroughCache();
   return (
     <>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 4fr 1fr" }}>
         {" "}
         <BackArrow />
-        <Typography color="black" variant="h1" textAlign="center">
+        <Typography
+          color="black"
+          variant="h1"
+          textAlign="center"
+          sx={{ margin: "0px" }}
+        >
           {props.post.title}
         </Typography>
       </div>
@@ -31,28 +45,28 @@ export default async function DetailedPageInfo(props: DetailedPageProps) {
         src={props.post.image}
         style={{
           width: "100%",
-          maxWidth: "600px",
+          maxWidth: "500px",
           placeSelf: "center",
           objectFit: "cover",
           aspectRatio: "1/1",
           borderRadius: "5px",
         }}
       />
-      <LikedButton likes={likes[0].likes} postId={props.postId} />
-      <Typography
-        color="black"
-        variant="body1"
-        textAlign="center"
-        sx={{ maxWidth: "500px", placeSelf: "center" }}
+      <div
+        style={{
+          maxWidth: "500px",
+          placeSelf: "center",
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          gap: "5px",
+        }}
       >
-        {props.post.content}
-      </Typography>
-      <Typography
-        color="black"
-        variant="body1"
-        textAlign="center"
-        sx={{ maxWidth: "500px", placeSelf: "center" }}
-      ></Typography>
+        <LikedButton likes={likes[0].likes} postId={props.postId} />
+        <Typography color="black" variant="body1" textAlign="left">
+          {props.post.content}
+        </Typography>
+      </div>
     </>
   );
 }
