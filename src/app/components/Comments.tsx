@@ -30,10 +30,11 @@ export default async function Comments(props: { id: string }) {
         paddingBottom: "30px",
       }}
     >
-      {comments.relatedComments.map((comment: Comment) => {
+      {comments.relatedComments.map((comment: Comment, index: number) => {
         if (comment.name && comment.text) {
           return (
             <div
+              key={index}
               style={{
                 border: `1px solid #d5d7c0`,
                 borderRadius: "5px",

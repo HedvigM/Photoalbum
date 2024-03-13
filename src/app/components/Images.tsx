@@ -23,8 +23,8 @@ export async function ImagesContainer() {
         overflow: "hidden",
       }}
     >
-      {posts.map((post: Post) => (
-        <Link href={`/${post._id}`}>
+      {posts.map((post: Post, index: number) => (
+        <Link href={`/${post._id}`} key={index}>
           <img
             alt={post.alt}
             src={post.image}
