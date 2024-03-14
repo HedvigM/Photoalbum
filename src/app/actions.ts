@@ -23,7 +23,7 @@ export async function addComment(
   let email = formData.get("email");
 
   try {
-    await fetch("https://k5kvfr8o.api.sanity.io/v1/data/mutate/production", {
+    await fetch("https://oyx4fx71.api.sanity.io/v1/data/mutate/production", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -58,7 +58,7 @@ export async function addComment(
 export async function addLike(postId: string): Promise<StatusMessage> {
   console.log("postId", postId);
   try {
-    await fetch("https://k5kvfr8o.api.sanity.io/v1/data/mutate/production", {
+    await fetch("https://oyx4fx71.api.sanity.io/v1/data/mutate/production", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
