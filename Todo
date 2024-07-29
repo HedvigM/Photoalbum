@@ -1,3 +1,9 @@
+1. lägg en hashad variant av lösen i local storage (om inlogget var successful).
+
+2. kolla om det finns någonting i local storage på alla sidor för att visa innehållet, om det finns, är det rätt hashlösen.
+
+3. Log out - remove hashed password from local storage.
+
 - [id] pages: Se how i can both fetch image data and use params in the same component.
 
 - Look over the components to see if anything should be written into smaller components.
