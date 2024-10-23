@@ -1,7 +1,7 @@
 "use client";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { useOptimistic, useState } from "react";
+import { useOptimistic } from "react";
 import { addLike } from "../actions";
 import { Button, Typography } from "@mui/material";
 

@@ -3,7 +3,6 @@ import { CssBaseline, ThemeProvider, Typography } from "@mui/material";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { theme } from "./styles/theme";
-import { UserProvider } from "@auth0/nextjs-auth0/client";
 import "./globals.css";
 import "dotenv/config";
 
@@ -34,7 +33,7 @@ export default function RootLayout({
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <UserProvider>{children}</UserProvider>
+            {children}
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>

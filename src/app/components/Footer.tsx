@@ -16,7 +16,7 @@ export default function Footer() {
         size="small"
         variant="contained"
         endIcon={<LogoutIcon />}
-        href="/api/auth/logout"
+        href="api/auth/signout"
         sx={{ ":hover": { backgroundColor: "#eef4b4", color: "black" } }}
       >
         Logga ut

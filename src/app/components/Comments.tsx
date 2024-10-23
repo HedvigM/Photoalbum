@@ -30,7 +30,7 @@ export default async function Comments(props: { id: string }) {
         paddingBottom: "30px",
       }}
     >
-      {comments.relatedComments.map((comment: Comment, index: number) => {
+      {/*  {comments.relatedComments.map((comment: Comment, index: number) => {
         if (comment.name && comment.text) {
           return (
             <div
@@ -55,7 +55,7 @@ export default async function Comments(props: { id: string }) {
             </div>
           );
         }
-      })}
+      })} */}
     </div>
   );
 }

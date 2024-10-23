@@ -62,7 +62,7 @@ export default async function DetailedPageInfo(props: DetailedPageProps) {
           gap: "5px",
         }}
       >
-        <LikedButton likes={likes[0].likes} postId={props.postId} />
+        {/*  <LikedButton likes={likes[0].likes} postId={props.postId} /> */}
         <Typography color="black" variant="body1" textAlign="left">
           {props.post.content}
         </Typography>

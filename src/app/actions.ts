@@ -9,23 +9,6 @@ export interface StatusMessage {
 
 export type Severity = "error" | "warning" | "info" | "success";
 
-export async function passwordCheck(
-  previousState: StatusMessage | null | undefined,
-  formData: FormData | undefined | null
-): Promise<StatusMessage> {
-  if (!formData) {
-    return { severity: "error", message: "Ingen formdata!" };
-  }
-
-  let password = formData.get("password");
-
-  if (password === process.env.LOGIN_PASSWORD) {
-    return { severity: "success", message: "Inloggad!" };
-  } else {
-    return { severity: "error", message: "Fel lösenord!" };
-  }
-}
-
 export async function addComment(
   previousState: StatusMessage | null | undefined,
   formData: FormData | undefined | null
